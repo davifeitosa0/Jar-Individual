@@ -1,6 +1,6 @@
 DROP DATABASE if exists medtechdavi;
-CREATE DATABASE medtechDavi;
-USE medtechDavi;
+CREATE DATABASE medtechdavi;
+USE medtechdavi;
 
 
 CREATE TABLE endereco(
