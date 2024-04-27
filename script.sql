@@ -1,5 +1,6 @@
-CREATE DATABASE medtech;
-USE medtech;
+DROP DATABASE if exists medtechdavi;
+CREATE DATABASE medtechDavi;
+USE medtechDavi;
 
 
 CREATE TABLE endereco(
@@ -79,9 +80,10 @@ CREATE TABLE leituraRamCpu(
     CONSTRAINT fkHospitalLeitura FOREIGN KEY (fkHospital) REFERENCES hospital(idHospital)
 );
 
-CREATE TABLE leituraDisco(
-	idLeituraDisco INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE leituraDiscoTempoLigado(
+	idLeituraDiscoTempoLigado INT PRIMARY KEY AUTO_INCREMENT,
     disco DOUBLE,
+    tempoLigado VARCHAR(45),
     dataLeitura DATETIME,
 	fkComputador INT NOT NULL,
     fkDepartamento INT NOT NULL,
@@ -118,6 +120,6 @@ INSERT INTO departamento (nome, fkHospital) VALUES ('Triagem', 1);
 INSERT INTO computador (nome, modeloProcessador, codPatrimonio, senha, gbRam, gbDisco, fkDepartamento, fkHospital) VALUES 
 ('PC_triagem01', 'Intel Core I3', 'C057689', 'medtech88', 8, 250, 1, 1);
 
-CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'usuario';
-GRANT insert, update, delete, select ON medtech.* to 'usuario'@'localhost';
+CREATE USER 'usuariodavi'@'localhost' IDENTIFIED BY 'usuariodavi';
+GRANT insert, update, delete, select ON medtechdavi.* to 'usuariodavi'@'localhost';
 FLUSH PRIVILEGES;

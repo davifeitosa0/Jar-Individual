@@ -28,17 +28,17 @@ fi
 
 # GitHub
 echo "\n\nBUSCANDO DIRETÓRIO DA APLICAÇÃO...\n\n"
-sudo ls  ../cliente_medtech/Jar-Individual
+sudo ls  Jar-Individual
 
 if [ $? = 0 ]
         then
                 echo "\n\nDIRETÓRIO ENCONTRADO.\n\n"
         else
                 echo "\n\nDIRETÓRIO NÃO ENCONTRADO. INSTALANDO APLICAÇÃO...\n\n"
-                sudo git clone https://github.com/davifeitosa0/Jar-Individual.git ../cliente_medtech/Jar-Individual
+                sudo git clone https://github.com/davifeitosa0/Jar-Individual.git 
 fi
 sudo chmod 111 script.sh
-sudo chmod 111 ../cliente_medtech/Jar-Individual
+
 
 # MYSQL
 echo "\n\nCONFIGURANDO BANCO DE DADOS\n\n"
@@ -47,9 +47,10 @@ yes | sudo apt install mysql-server
 yes | sudo systemctl start mysql
 yes | sudo systemctl enable mysql
 
-SQL_SCRIPT="../cliente_medtech/Jar-Individual/script.sql"
+SQL_SCRIPT="Jar-Individual/script.sql"
 
 sudo mysql < "$SQL_SCRIPT"
 
-echo "\n\nTUDO CONFIGURADO! EXECUTE OS SEGUINTES COMANDOS PARA RODAR A APLICAÇÃO:\n 1- cd ../cliente_medtech/Jar-Individual \n 2- java -jar JarIndividualDavi.jar"
-sudo su cliente_medtech
+echo "\n\nTUDO CONFIGURADO! EXECUTE OS SEGUINTES COMANDOS PARA RODAR A APLICAÇÃO:\n 1- cd Jar-Individual \n 2- java -jar JarIndividualDavi.jar"
+cd Jar-Individual
+java -jar JarIndividualDavi.jar
