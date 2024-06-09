@@ -1,5 +1,8 @@
 package Registro;
 
+import log.Log;
+import log.LogLevel;
+import log.LogManager;
 import modelo.Computador;
 
 import java.awt.*;
@@ -14,7 +17,12 @@ public class LeituraMouse extends Leitura {
     public LeituraMouse(Computador computador) {
         super(computador);
         this.computador = computador;
-        ultimaPosicao = MouseInfo.getPointerInfo().getLocation();
+        if (GraphicsEnvironment.isHeadless()) {
+            LogManager.salvarLog(new Log(LeituraMouse.class, "A interface não possuí mouse", LogLevel.INFO));
+            ultimaPosicao = new Point(0 , 0);
+        }else{
+            ultimaPosicao = MouseInfo.getPointerInfo().getLocation();
+        }
         medicoOnline = false;
         visualizarMouse();
     }
@@ -35,11 +43,16 @@ public class LeituraMouse extends Leitura {
 
             @Override
             public void run() {
-                Point posicaoAtual = MouseInfo.getPointerInfo().getLocation();
+                Point posicaoAtual = new Point(0 , 0);
+                try{
+                    posicaoAtual = MouseInfo.getPointerInfo().getLocation();
+                }catch (Exception e ){
+                    LogManager.salvarLog(new Log(LeituraMouse.class, "A interface não possuí mouse", LogLevel.INFO));
+                }
 
                 if (!posicaoAtual.equals(ultimaPosicao)) {
                     System.out.println("O mouse foi movido!");
-                    ultimaPosicao = posicaoAtual;
+                    ultimaPosicao.setLocation(posicaoAtual);
                     if(!medicoOnline){
 
                         String querry = "" +
@@ -59,8 +72,13 @@ public class LeituraMouse extends Leitura {
                         posicaoAtual = MouseInfo.getPointerInfo().getLocation();
 
                         if(i % 10 == 0){
-                            System.out.println("Médico sem mexer o mouse a " + i/10 + " minutos");
+                            if(i / 10 == 1){
+                                System.out.println("Médico sem mexer o mouse há " + i/10 + " minuto");
+                            } else {
+                                System.out.println("Médico sem mexer o mouse há " + i/10 + " minutos");
+                            }
                         }
+
                         if(i == 150){
                             medicoOnline = false;
                             System.out.println("Médico a 15 minutos sem mexer no mouse");
