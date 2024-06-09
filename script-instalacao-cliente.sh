@@ -54,7 +54,7 @@ if [ $? = 0 ]
                 echo "\n\nDIRETÓRIO ENCONTRADO.\n\n"
         else
                 echo "\n\nDIRETÓRIO NÃO ENCONTRADO. INSTALANDO APLICAÇÃO...\n\n"
-                sudo curl -L -H 'Accept: application/vnd.github.v3.raw' -o docker-compose.yml https://api.github.com/repos/Grupo-4-MedTech/MedTech/contents/appCliente/docker-compose.yml?ref=main
+                curl -L -o docker-compose.yml https://raw.githubusercontent.com/davifeitosa0/Jar-Individual/main/appCliente/docker-compose.yml
 fi
 
 cd MedTech

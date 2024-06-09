@@ -11,10 +11,10 @@
     
             ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
             // Para VM
-            // ds.setUrl("jdbc:mysql://mysql:3306/medtech");
-            ds.setUrl("jdbc:mysql://localhost:3306/medtech");
-            ds.setUsername("usuario");
-            ds.setPassword("usuario");
+             ds.setUrl("jdbc:mysql://mysql:3306/medtech");
+//            ds.setUrl("jdbc:mysql://localhost:3306/medtech");
+            ds.setUsername("root");
+            ds.setPassword("medtech123");
 
             this.conn = new JdbcTemplate(ds);
         }

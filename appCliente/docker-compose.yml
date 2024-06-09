@@ -9,18 +9,13 @@ services:
       - "3306:3306"
 
   appcliente:  
-    container_name: jar_medtech
-    image: davifeitosa0/jar_medtech
+    container_name: jar_davi
+    image: davifeitosa0/jar_davi
     environment:
-      -  CODIGO_PATRIMONIO=C057689
+      -  CODIGO_PATRIMONIO=C056689
       -  SENHA_PC=medtech88 
     depends_on:
       - mysql
-
-networks:
-  default:
-    driver: bridge
-
 
   
     
