@@ -8,8 +8,8 @@ import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.group.janelas.Janela;
 import com.github.britooo.looca.api.group.janelas.JanelaGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
+import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.util.Conversor;
-import com.google.common.base.Converter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -21,8 +21,8 @@ public class Computador {
     private String nome;
     private String modeloProcessador;
     private String codPatrimonio;
-    private int maxRam;
-    private int maxDisco;
+    private Double maxRam;
+    private Double maxDisco;
 
     private int fkDepartamento;
 
@@ -30,14 +30,14 @@ public class Computador {
     private Departamento departamento;
 
     Looca looca = new Looca();
+    Processador processador = looca.getProcessador();
     Memoria memoria = looca.getMemoria();
-    JanelaGrupo janelaGrupo = looca.getGrupoDeJanelas();
-    List<Janela> listaJanelas = janelaGrupo.getJanelas();
+
     DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
     List<Volume> volumes = grupoDeDiscos.getVolumes();
     List<Long> porcentagemVolumes = new ArrayList<>();
 
-    public Computador(int idComputador, String modeloProcessador,  String nome, String codPatrimonio, int maxRam, int maxDisco)
+    public Computador(int idComputador, String modeloProcessador,  String nome, String codPatrimonio, Double maxRam, Double maxDisco)
     {
         this.idComputador      = idComputador;
         this.modeloProcessador = modeloProcessador;
@@ -52,68 +52,28 @@ public class Computador {
     }
 
     //GETTERS
-    public Long getTempoLigado(){return looca.getSistema().getTempoDeAtividade();}
-
-    public String getQuantidadeMaximaMemoria(){
-        return Conversor.formatarBytes(memoria.getTotal());
-    }
-
-    public String getUsoMemoria(){
-        return Conversor.formatarBytes(memoria.getEmUso());
-    }
-
-    public Double getPorcentagemConsumoMemoria(){
-        return memoria.getEmUso() * 100.0 / memoria.getTotal();
-    }
 
 
-    List<Janela> listaGuias = new ArrayList<>();
-    public List<Janela> getJanelas() {
-        for (Janela listaJanela : listaJanelas) {
-            if (listaJanela.getTitulo().contains("Google Chrome") || listaJanela.getTitulo().contains("Edge") || listaJanela.getTitulo().contains("Firefox") || listaJanela.getTitulo().contains("Opera")) {
-                listaGuias.add(listaJanela);
-            }
-        }
-        return listaGuias;
+    public String getModeloProcessador() {
+        return modeloProcessador;
     }
 
-    public List<Long> getPorcentagemDeTodosVolumes(){
-        for (Volume volume : volumes) {
-            if(volume.getTotal() > 0){
-                porcentagemVolumes.add((volume.getTotal() - volume.getDisponivel()) * 100 / volume.getTotal());
-            }
-        }
-        return porcentagemVolumes;
+    public String getCodPatrimonio() {
+        return codPatrimonio;
     }
 
-    // percorrer a lista de % de consumo de discos e pegar o maior número da lista
-    public Double getDiscoComMaisConsumo(List<Long>porcentagemVolumes){
-        Optional<Double> menorPorcentDisco = porcentagemVolumes.stream()
-                .map(e -> e.doubleValue())
-                .max(Comparator.naturalOrder());
-
-        return menorPorcentDisco.get();
-    }
-
-    public String getNomeProcessador(){
-        return looca.getProcessador().getNome();
-    }
-    public Integer getCpusFisicas(){
-        return looca.getProcessador().getNumeroCpusFisicas();
-    }
-    public Integer getCpusLogicas(){
-        return looca.getProcessador().getNumeroCpusLogicas();
-    }
-    public Double getPorcentagemConsumoCpu(){
-        return looca.getProcessador().getUso();
+    public Double getMaxRam() {
+        return maxRam;
     }
 
     public int getIdComputador() {
         return this.idComputador;
     }
-    public int getMaxDisco() {
+    public Double getMaxDisco() {
         return this.maxDisco;
     }
+
+
 
     public Departamento getDepartamento(){
         return this.departamento;
@@ -131,38 +91,55 @@ public class Computador {
         return fkDepartamento;
     }
 
+    public Processador getProcessador() {
+        return processador;
+    }
+
+    public Memoria getMemoria() {
+        return memoria;
+    }
+
+    public List<Volume> getVolumes() {
+        return volumes;
+    }
+
     //SETTERS
 
-    public void setCodPatrimonio(String codPatrimonio) {
-        this.codPatrimonio = codPatrimonio;
+
+    public void setVolumes(List<Volume> volumes) {
+        this.volumes = volumes;
     }
 
-    public void setMaxDisco(int maxDisco) {
-        this.maxDisco = maxDisco;
+    public void setMemoria(Memoria memoria) {
+        this.memoria = memoria;
     }
 
-    public void setMaxRam(int maxRam) {
-        this.maxRam = maxRam;
+    public void setProcessador(Processador processador) {
+        this.processador = processador;
     }
 
-    public void setModeloProcessador(String modeloProcessador) {
-        this.modeloProcessador = modeloProcessador;
-    }
-
-    public void setnome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
-        departamento.addComputadores(this);
-    }
     public void setIdComputador(int idComputador) {
         this.idComputador = idComputador;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setModeloProcessador(String modeloProcessador) {
+        this.modeloProcessador = modeloProcessador;
+    }
+
+    public void setCodPatrimonio(String codPatrimonio) {
+        this.codPatrimonio = codPatrimonio;
+    }
+
+    public void setMaxRam(Double maxRam) {
+        this.maxRam = maxRam;
+    }
+
+    public void setMaxDisco(Double maxDisco) {
+        this.maxDisco = maxDisco;
     }
 
     public void setFkDepartamento(int fkDepartamento) {
@@ -172,6 +149,15 @@ public class Computador {
     public void setFkHospital(int fkHospital) {
         this.fkHospital = fkHospital;
     }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+        departamento.addComputador(this);
+    }
+    public void setGrupoDeDiscos(DiscoGrupo grupoDeDiscos) {
+        this.grupoDeDiscos = grupoDeDiscos;
+    }
+
 
     @Override
     public String toString() {
@@ -190,6 +176,4 @@ public class Computador {
                 + "Razão social: " + this.departamento.getHospital().getRazaoSocial() + "\n"
                 + "CNPJ:" + this.departamento.getHospital().getCnpj();
     }
-
-
 }

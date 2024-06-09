@@ -1,22 +1,39 @@
 import Persistencia.Conexao;
+import Persistencia.ConexaoSQL;
+import Registro.Leitura;
+import Registro.LeituraComputador;
+import Registro.LeituraJanela;
 import com.github.britooo.looca.api.group.janelas.Janela;
+import modelo.Departamento;
+import modelo.Hospital;
 import org.springframework.jdbc.core.JdbcTemplate;
 import repositorio.ComputadorRepositorio;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
 import modelo.Computador;
+import log.HardwareType;
+import log.Log;
+import log.LogLevel;
+import log.LogManager;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class Main {
-    static Scanner leitorStr = new Scanner(System.in);
+
+
     static Conexao conexao = new Conexao();
     static JdbcTemplate conn = conexao.getConn();
 
+    static ConexaoSQL conexaoSQL = new ConexaoSQL();
+    static JdbcTemplate connSQL = conexaoSQL.getConn();
 
-    public static void main(String[] args) throws InterruptedException {
-
+    public static void main(String[] args) throws InterruptedException, IOException {
         telaInicial();
     }
 
@@ -42,14 +59,15 @@ public class Main {
     static void login() throws InterruptedException {
         System.out.println("Login iniciado! \n");
 
-        ComputadorRepositorio repositorioComputador = new ComputadorRepositorio(conn);
+        ComputadorRepositorio repositorioComputador = new ComputadorRepositorio(conn, connSQL);
 
         List computadorAutenticado;
         do {
             System.out.println("Código do patrimônio:");
-            String codPatrimonio = leitorStr.next();
+            String codPatrimonio = System.getenv("CODIGO_PATRIMONIO");
             System.out.println("Senha:");
-            String senhaH = leitorStr.next();
+            String senhaH = System.getenv("SENHA_PC");
+
 
             computadorAutenticado = repositorioComputador.autenticarComputador(senhaH, codPatrimonio);
 
@@ -69,61 +87,19 @@ public class Main {
         Computador computador = (Computador) computadorAutenticado.get(0);
         System.out.println(computador);
 
+        Computador computadorLocal = new Computador();
+        Leitura leituraLocal = new LeituraComputador(computadorLocal);
+
         System.out.println("\nAGORA ESTE COMPUTADOR ESTÁ SENDO MONITORADO EM TEMPO REAL.");
 
-        inserirLeituras(computador);
-    }
+        LeituraComputador leitura = new LeituraComputador(computador);
 
-    public static void inserirLeituras(Computador computador) throws InterruptedException {
-
-        for (int i = 1; true; i++) {
-
-            String queryRamCpu = "INSERT INTO leituraRamCpu (ram, cpu, dataLeitura, fkComputador, fkDepartamento, fkHospital) VALUES("
-                    + computador.getPorcentagemConsumoMemoria()
-                    + ", " + computador.getPorcentagemConsumoCpu()
-                    + ", '" + LocalDateTime.now() + "', " + computador.getIdComputador()
-                    + ", " + computador.getFkDepartamento() + ", "
-                    + computador.getFkHospital() + ");";
-
-//            System.out.printf("""
-//                    COMANDO DE INSERÇÃO DE LEITURAS DE RAM E CPU:
-//                    %s \n
-//                    """, queryRamCpu);
-            conn.execute(queryRamCpu);
-
-            for (Janela janela : computador.getJanelas()) {
-                String queryFerramenta =
-                        "INSERT INTO leituraFerramenta (nomeApp, dtLeitura, caminho, fkComputador, fkDepartamento, fkHospital) VALUES( '"
-                                + janela.getTitulo() + "', '"
-                                + LocalDateTime.now() + "', '"
-                                + janela.getComando() + "', "
-                                + computador.getIdComputador() + ", "
-                                + computador.getFkDepartamento() + ", "
-                                + computador.getFkHospital() + ");";
-
-//                System.out.printf("""
-//                        COMANDO DE INSERÇÃO DE LEITURAS DE FERRAMENTAS EM USO: \n
-//                        %s \n
-//                        """, queryFerramenta);
-                conn.execute(queryFerramenta);
-            }
-
-            if (i > 9) {
-                String queryDisco = "INSERT INTO leituraDiscoTempoLigado (disco, tempoLigado, dataLeitura, fkComputador, fkDepartamento, fkHospital) VALUES ("
-                        + computador.getDiscoComMaisConsumo(computador.getPorcentagemDeTodosVolumes())
-                        + ", '" + computador.getTempoLigado() + "', '" + LocalDateTime.now() + "', " + computador.getIdComputador()
-                        + ", " + computador.getFkDepartamento() + ", " + computador.getFkDepartamento() + ");";
-
-                System.out.printf("""
-                        COMANDO DE INSERÇÃO DE LEITURAS DE FERRAMENTAS EM USO: \n
-                        %s \n
-                        """, queryDisco);
-                conn.execute(queryDisco);
-
-                i = 0;
-            }
-
-            Thread.sleep(3000);
+        try{
+            leitura.inserirLeitura();
+        } catch (InterruptedException interruptedException){
+            System.out.println("Erro na Classe Main metodo login()");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-    }
+    } 
 }
