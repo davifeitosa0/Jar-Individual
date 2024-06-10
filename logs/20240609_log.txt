@@ -160,3 +160,57 @@ INFO Classe:class Registro.LeituraComputador
 Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
 
 ----------------------------------------
+
+2024/09/06 18:50:13
+INFO Classe:class Registro.LeituraComputador
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------
+
+2024/09/06 18:50:45
+INFO Classe:class Registro.LeituraJanela
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------
+
+2024/09/06 18:51:25
+INFO Classe:class Registro.LeituraComputador
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------
+
+2024/09/06 18:51:55
+INFO Classe:class Registro.LeituraMouse
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------
+
+2024/09/06 18:52:25
+INFO Classe:class Registro.LeituraJanela
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------
+
+2024/09/06 18:53:06
+INFO Classe:class Registro.LeituraComputador
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------
+
+2024/09/06 18:53:36
+INFO Classe:class Registro.LeituraJanela
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------
+
+2024/09/06 18:54:17
+INFO Classe:class Registro.LeituraComputador
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------
+
+2024/09/06 18:54:47
+INFO Classe:class Registro.LeituraJanela
+Mensagem: ERRO DE CONEXÃO: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (Falha na conexão TCP/IP com o host 34.195.43.136, porta 1433. Erro: "Connect timed out. Verifique as propriedades da conexão. Verifique se uma instância do SQL Server está sendo executada no host e se está aceitando conexões TCP/IP na porta. Verifique se as conexões TCP na porta não foram bloqueadas por um firewall.".)
+
+----------------------------------------

@@ -42,20 +42,19 @@ else
         sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && sudo chmod +x /usr/local/bin/docker-compose
 fi
 
-echo "\n Para continuar digite [y] \n"
-read breackpoint
 
 # GitHub
-echo "\n\nBUSCANDO DIRETÓRIO DA APLICAÇÃO...\n\n"
-sudo ls MedTech
+echo "\n\nBUSCANDO COMPOSE DA APLICAÇÃO...\n\n"
+sudo ls docker-compose.yml
 
 if [ $? = 0 ]
         then
-                echo "\n\nDIRETÓRIO ENCONTRADO.\n\n"
+                echo "\n\nCOMPOSE ENCONTRADO.\n\n"
         else
-                echo "\n\nDIRETÓRIO NÃO ENCONTRADO. INSTALANDO APLICAÇÃO...\n\n"
+                echo "\n\nCOMPOSE NÃO ENCONTRADO. INSTALANDO APLICAÇÃO...\n\n"
                 curl -L -o docker-compose.yml https://raw.githubusercontent.com/davifeitosa0/Jar-Individual/main/appCliente/docker-compose.yml
 fi
+echo "\n Para subir o compose digite [y] \n"
+read breakpoint
 
-cd MedTech
 sudo docker-compose up -d
