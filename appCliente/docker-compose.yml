@@ -12,7 +12,7 @@ services:
     container_name: jar_davi
     image: davifeitosa0/jar_davi
     environment:
-      -  CODIGO_PATRIMONIO=C056689
+      -  CODIGO_PATRIMONIO=C056694
       -  SENHA_PC=medtech88 
     depends_on:
       - mysql

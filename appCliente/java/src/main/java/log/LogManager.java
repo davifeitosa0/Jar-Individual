@@ -10,22 +10,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class LogManager {
-
-    public static void salvarLog(Log log, int id) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter("logs.txt", true))) {
-            bw.write("ID %d. ".formatted(id));
-            bw.newLine();
-
-            bw.write(log.toString());
-            bw.newLine();
-
-            bw.newLine();
-            bw.write("----------------------------------------");
-            bw.newLine();
-        } catch (IOException e) {
-            System.out.print("Erro: " + e.getMessage());
-        }
-    }
     public static void salvarLog(Log log) {
 
         String diretorio = "logs";

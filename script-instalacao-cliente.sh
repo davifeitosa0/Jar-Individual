@@ -52,7 +52,7 @@ if [ $? = 0 ]
                 echo "\n\nCOMPOSE ENCONTRADO.\n\n"
         else
                 echo "\n\nCOMPOSE NÃO ENCONTRADO. INSTALANDO APLICAÇÃO...\n\n"
-                curl -L -o docker-compose.yml https://raw.githubusercontent.com/davifeitosa0/Jar-Individual/main/appCliente/docker-compose.yml
+                sudo curl -L -o docker-compose.yml https://raw.githubusercontent.com/davifeitosa0/Jar-Individual/main/appCliente/docker-compose.yml
 fi
 echo "\n Para subir o compose digite [y] \n"
 read breakpoint
